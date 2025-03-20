@@ -80,4 +80,17 @@ class TopService(
     }
 
 
+    // DataSourceTransactionManager
+    @Transactional(transactionManager = "transactionManager")
+    fun dataSourceTxFlush() {
+        println("=========================")
+        testTxRepository.saveAndFlush(TestTxEntity("ABC"))
+        println("=========================")
+        /**
+         * =========================
+         *
+         * org.springframework.dao.InvalidDataAccessApiUsageException: no transaction is in progress
+         */
+    }
+
 }

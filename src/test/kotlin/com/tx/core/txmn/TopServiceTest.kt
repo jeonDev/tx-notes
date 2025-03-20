@@ -40,4 +40,12 @@ class TopServiceTest(
     fun JpaTm_하위트랜잭션_REQUIREWS_NEW_save() {
         topService.jpaTopTx()
     }
+
+    @Test
+    @Rollback(false)
+    fun DataSourceTm_트랜잭션_saveAndFlush() {
+        assertThrows(InvalidDataAccessApiUsageException::class.java) {
+            topService.dataSourceTxFlush()
+        }
+    }
 }
