@@ -1,10 +1,10 @@
-package com.tx.core.test1;
+package com.tx.core.txmn;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "TEST")
-public class TestEntity {
+@Table(name = "TEST_TX")
+public class TestTxEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -13,11 +13,11 @@ public class TestEntity {
     @Column(name = "NAME")
     private String name;
 
-    public TestEntity(String name) {
+    public TestTxEntity(String name) {
         this.name = name;
     }
 
-    public TestEntity() {
+    public TestTxEntity() {
     }
 
 }
