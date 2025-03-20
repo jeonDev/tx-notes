@@ -14,16 +14,28 @@ class TopService(
     // DataSourceTransactionManager
     @Transactional(transactionManager = "transactionManager")
     fun dataSourceTopTxFlush() {
+        println("dataSourceTopTxFlush")
         println("=========================")
         subService.dataSourceSubTxFlush()
         println("=========================")
 
         /**
+         * swagger
+         * dataSourceTopTxFlush
          * =========================
          * =========================
          * Hibernate: select next value for test_tx_seq
-         *
-         * org.springframework.dao.InvalidDataAccessApiUsageException: no transaction is in progress
+         * Hibernate: insert into test_tx (name,id) values (?,?)
+         * =========================
+         * =========================
+         */
+
+        /**
+         * 테스트코드
+         * dataSourceTopTxFlush
+         * =========================
+         * =========================
+         * Hibernate: select next value for test_tx_seq
          *
          * -->>>> SubService.subTx() -> saveAndFlush() 부분에서 발생!
          * 왜???
@@ -33,14 +45,28 @@ class TopService(
     // DataSourceTransactionManager
     @Transactional(transactionManager = "transactionManager")
     fun dataSourceTopTx() {
+        println("dataSourceTopTx")
         println("=========================")
         subService.dataSourceSubTx()
         println("=========================")
         /**
+         * swagger
+         * dataSourceTopTx
+         * =========================
+         * =========================
+         * Hibernate: select next value for test_tx_seq
+         * =========================
+         * Hibernate: insert into test_tx (name,id) values (?,?)
+         * =========================
+         */
+        /**
+         * 테스트코드
+         * dataSourceTopTx
          * =========================
          * =========================
          * =========================
          * =========================
+         *
          * ????? 이건 왜??
          */
     }
@@ -49,32 +75,56 @@ class TopService(
     // JpaTransactionManager
     @Transactional(transactionManager = "jpaTransactionManager")
     fun jpaTopTxFlush() {
+        println("jpaTopTxFlush")
         println("=========================")
         subService.jpaSubTxFlush()
         println("=========================")
         /**
+         * swagger
+         * jpaTopTxFlush
+         * =========================
+         * =========================
+         * Hibernate: insert into test_tx (name,id) values (?,?)
+         * =========================
+         * =========================
+         */
+        /**
+         * 테스트코드
+         * jpaTopTxFlush
          * =========================
          * =========================
          * Hibernate: select next value for test_tx_seq
          * Hibernate: insert into test_tx (name,id) values (?,?)
          * =========================
          * =========================
-         *
          */
     }
 
     // JpaTransactionManager
     @Transactional(transactionManager = "jpaTransactionManager")
     fun jpaTopTx() {
+        println("jpaTopTx")
         println("=========================")
         subService.jpaSubTx()
         println("=========================")
         /**
+         * swagger
+         * jpaTopTx
          * =========================
          * =========================
          * =========================
          * Hibernate: insert into test_tx (name,id) values (?,?)
          * =========================
+         */
+        /**
+         * 테스트코드
+         * jpaTopTx
+         * =========================
+         * =========================
+         * =========================
+         * Hibernate: insert into test_tx (name,id) values (?,?)
+         * =========================
+         *
          *
          */
     }
@@ -83,13 +133,26 @@ class TopService(
     // DataSourceTransactionManager
     @Transactional(transactionManager = "transactionManager")
     fun dataSourceTxFlush() {
+        println("dataSourceTxFlush")
         println("=========================")
         testTxRepository.saveAndFlush(TestTxEntity("ABC"))
         println("=========================")
         /**
+         * swagger
+         * dataSourceTopTx
+         * =========================
+         * =========================
+         * =========================
+         * Hibernate: insert into test_tx (name,id) values (?,?)
+         * =========================
+         */
+        /**
+         * dataSourceTopTx
+         * =========================
+         * =========================
+         * =========================
          * =========================
          *
-         * org.springframework.dao.InvalidDataAccessApiUsageException: no transaction is in progress
          */
     }
 

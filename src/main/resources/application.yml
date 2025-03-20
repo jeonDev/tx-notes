@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: txmn
   h2:
     console:
       path: /h2-console
@@ -13,4 +15,3 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create
-    open-in-view: false
