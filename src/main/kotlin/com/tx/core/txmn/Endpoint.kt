@@ -19,6 +19,9 @@ class Endpoint(
     @PostMapping("/datasource/3")
     fun datasource3() = topService.dataSourceTopTx()
 
+    @PostMapping("/datasource/4")
+    fun datasource4() = topService.dataSourceFindAfterTopTxFlush()
+
     @PostMapping("/jpa/1")
     fun jpa1() = topService.jpaTopTxFlush()
 

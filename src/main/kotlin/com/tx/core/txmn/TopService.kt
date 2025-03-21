@@ -13,6 +13,37 @@ class TopService(
 
     // DataSourceTransactionManager
     @Transactional(transactionManager = "transactionManager")
+    fun dataSourceFindAfterTopTxFlush() {
+        println("dataSourceFindAfterTopTxFlush")
+        println("=========================")
+        val findAll = testTxRepository.findAll()
+        subService.dataSourceSubTxFlush()
+        println("=========================")
+
+        /**
+         * swagger
+         * dataSourceFindAfterTopTxFlush
+         * =========================
+         * Hibernate: select tte1_0.id,tte1_0.name from test_tx tte1_0
+         * =========================
+         * Hibernate: select next value for test_tx_seq
+         * 2025-03-21T16:51:22.813+09:00 ERROR 34596 --- [nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.dao.InvalidDataAccessApiUsageException: no transaction is in progress] with root cause
+         *
+         * jakarta.persistence.TransactionRequiredException: no transaction is in progress
+         */
+
+        /**
+         * 테스트코드
+         * dataSourceFindAfterTopTxFlush
+         * =========================
+         * Hibernate: select tte1_0.id,tte1_0.name from test_tx tte1_0
+         * =========================
+         * Hibernate: select next value for test_tx_seq
+         */
+    }
+    
+    // DataSourceTransactionManager
+    @Transactional(transactionManager = "transactionManager")
     fun dataSourceTopTxFlush() {
         println("dataSourceTopTxFlush")
         println("=========================")

@@ -17,6 +17,14 @@ class TopServiceTest(
 
     @Test
     @Rollback(false)
+    fun DataSourceTm_하위트랜잭션_조회후_REQUIREWS_NEW_saveAndFlush() {
+        assertThrows(InvalidDataAccessApiUsageException::class.java) {
+            topService.dataSourceFindAfterTopTxFlush()
+        }
+    }
+
+    @Test
+    @Rollback(false)
     fun DataSourceTm_하위트랜잭션_REQUIREWS_NEW_saveAndFlush() {
         assertThrows(InvalidDataAccessApiUsageException::class.java) {
             topService.dataSourceTopTxFlush()
