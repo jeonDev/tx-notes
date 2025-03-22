@@ -1,6 +1,6 @@
-spring:
-  profiles:
-    active: txmn
+#spring:
+#  profiles:
+#    active: txmn
   h2:
     console:
       path: /h2-console
